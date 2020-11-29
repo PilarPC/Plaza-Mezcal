@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="CSS/style.css">
+  <title>Plaza Mezcal</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-functions.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-storage.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <h4 class="marca" class="navbar-brand" href="#">Plaza Mezcal <img id="logo" src="CSS/img/L.jpg" alt=""></h4>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="pos" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <!--<a class="nav-link" href="registro.html">registrar</a>  -->
+          <a class="nav-link" href="regFire.html">registrar</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="inicioSes.html">Iniciar seción</a>
+            <a class="dropdown-item" href="hist.html">Historia</a>
+            <a class="dropdown-item" href="novedades.html">Novedades</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="Carro.html">Carrito <img class="carro" src="CSS/img/CC1.png" alt=""> </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Plaza Mezcal</h1>
+      <h3>La mejor plaza de Mezcal de México</h3>
+      <hr>
+      <img id="encabezado"src="CSS/img/Tip.jpg" alt="">
+      <p style="text-align: justify; font-size: 24px;">El mezcal se produce en casi todos los lugares de México donde hay agaves. Son famosos los mezcales norteños y los de Oaxaca, de hecho Santiago Matatlán, en Oaxaca, es considerada la capital mundial del mezcal. De esa impresionante región proviene el mezcal artesanal joven, el cual posee un aroma ahumado sutil y cuenta con un extraordinario balance entre minerales, madera y agave cocido, con finos detalles herbáceos. El tiempo de maduración del agave es de 3 años y se cuece de manera artesanal en un horno de piedra con ocote, mezquite y encino molido. Sin duda una tradición ancestral que vale la pena saborear.</p>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <h2>Catálogo</h2>
+    <br>
+    <div class="row">
+      <div class="col-lg-4 col-xs-6 img-thumbnail"><img src="http://drinkhacker.com/wp-content/uploads/2014/01/El-Silencio-Mezcal.jpg" alt=""></div>
+      <div class="col-lg-4 col-xs-6 img-thumbnail"><img class="tamim1" src="http://revistaelconocedor.com/wp-content/uploads/2017/04/Christian-Lamb.jpg" alt=""></div>
+      <div class="col-lg-4 col-xs-6 img-thumbnail"><img class="tamim2" src="https://th.bing.com/th/id/OIP.adDXPvOOwLf-ZclhhdAOoQHaJ4?pid=Api&rs=1" alt=""></div>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="CSS/img/M1.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="CSS/img/M2.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="CSS/img/M3.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>

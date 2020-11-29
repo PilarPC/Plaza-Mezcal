@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="CSS/style.css">
+  <title>Plaza Mezcal</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-functions.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-storage.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <h4 class="marca" class="navbar-brand" href="#">Plaza Mezcal <img id="logo" src="CSS/img/L.jpg" alt=""></h4>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="pos" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="source.html">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="inicioSes.html">Iniciar seción</a>
+            <a class="dropdown-item" href="hist.html">Historia</a>
+            <a class="dropdown-item" href="novedades.html">Novedades</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="Carro.html">Carrito <img class="carro" src="CSS/img/CC1.png" alt=""> </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <form class="form-group">
+      <div id="message">
+        <div class="container">
+          <div class="jumbotron">
+            <h1 id="welcome">Registro</h1>
+            <p id="error">Ingresa tu Email y password</p>
+          </div>
+        </div>
+
+        <label for="nom">Nombre:</label>
+        <input type="text" id="nombre" name="fname" class="form-control" placeholder="nombre" required>
+
+        <label for="codPos">Codigo Postal:</label>
+        <input id="codPost" type="text" class="form-control" name="codPos" placeholder="codigo postal" required>
+
+
+        <label for="emailUsuario">Email:</label>
+        <input type="email" id="email" name="fname" class="form-control" placeholder="email" required>
+
+
+        <label for="passUsuario">Password:</label>
+        <input type="password" id="pass" name="fname" class="form-control" placeholder="password" required>
+
+        <div class="checkbox">
+          <label for="chekUsuario"><input type="checkbox" name="chekUsuario" value=""> Recordar firma</label>
+        </div>
+
+        <button id="signInButton" onclick="myFunction()" type="submit" class="btn btn-outline-secondary btn-lg" name="button" style="margin-left: 500px;">Registrar</button> <br><br>
+        <input type="file" id="fileButton" value="upload"/>
+        <progress id="uploader" value="0" max="100">0%</progress><br><br>
+
+      </div>
+    </form>
+  </div>
+
+<script type="text/javascript">
+    function upload(){
+       var uploader = document.getElementById('uploader');
+  var fileButton =         document.getElementById('fileButton');
+  fileButton.addEventListener('change', function(e){
+  var file = e.target.files[0];
+  var storageRef = firebase.storage().ref('img/'+file.name);
+  var task = storageRef.put(file);
+  task.on('state_changed', function progress(snapshot) {
+    var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+    uploader.value = percentage;
+
+  }, function error(err) {
+
+
+  },function complete() {
+    document.getElementById('image').src = "https://firebasestorage.googleapis.com/v0/b/clase-up.appspot.com/o/img%2F"+file.name+"?alt=media&token=7d88a1c1-c978-4039-b656-73fe6a55c8d7"
+
+  });
+});
+    }
+  </script>
+
+  <script>
+    function myFunction() {
+      var user = firebase.auth().currentUser;
+      if (!user) {
+        console.log("logging...")
+        document.getElementById('error').innerHTML = ""
+        if (document.getElementById('email').value != "") {
+          if (document.getElementById('pass').value != "") {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('pass').value
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              document.getElementById('error').innerHTML = error.message
+            });
+          } else {
+            document.getElementById('error').innerHTML = "password vacío"
+          }
+        } else {
+          document.getElementById('error').innerHTML = "Email vacío"
+        }
+
+      } else {
+        firebase.auth().signOut().then(function () {
+          document.getElementById('error').innerHTML = "Sesión cerrada"
+        }).catch(function (error) {
+          document.getElementById('error').innerHTML = error.message
+
+        });
+      }
+    }
+  </script>
+
+  <script>
+    function borrarUsuario() {
+      var user = firebase.auth().currentUser;
+      var users = db.collection("Users")
+      users.where("email", "==", user.email)
+        .get()
+        .then(function (querySnapshot) {
+          if (!querySnapshot.empty) {
+            db.collection("Users").doc(querySnapshot.docs[0].id).delete().then(function () {
+              console.log("Document successfully deleted!");
+            }).catch(function (error) {
+              console.error("Error removing document: ", error);
+            });
+
+          } else {
+            console.log("No hay usuarios")
+          }
+        })
+        .catch(function (error) {
+          console.log("Error getting documents: ", error);
+        });
+
+
+    }
+  </script>
+
+  <script>
+    function llamarFunción() {
+      var messageText =  document.getElementById('nombre').value
+      var addMessage = firebase.functions().httpsCallable('getSomeInfo');
+      addMessage({
+        message: messageText
+      }).then(function (response) {
+        console.log(response.data)
+        document.getElementById('function').innerHTML = response.data["result"]
+      }).catch(function (error) {
+        var code = error.code;
+        var message = error.message;
+        var details = error.details;
+        console.log(error.code)
+      });;
+
+
+    }
+  </script>
+
+</body>
+
+</html>

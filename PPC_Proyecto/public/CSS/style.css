@@ -1,0 +1,45 @@
+
+img{
+  width: 100%;
+}
+
+.tamim1{
+  width: 290px;
+  margin-left: 30px;
+}
+
+.tamim2{
+  width: 329px;
+  margin-left: 10px;
+}
+
+
+#codPost{
+  width: 20%;
+}
+
+#reg{
+  margin-left: 500px;
+}
+
+
+.nom{
+  color: #F7D251;
+}
+
+.marca{
+  color: #F7D251;
+  font-size: 50px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#logo{ width: 7%;}
+
+.pos{margin-left: 200px; }
+
+.carro{width: 30%; margin-left: 30px;}
+
+#hist{ background-color: #F0EAD4; text-align: justify;}
+.precios{ text-align: center; }
+.NumProd{ width: 20%}
+#encabezado{ width: 40%; float: right; padding-left: 20px;}
